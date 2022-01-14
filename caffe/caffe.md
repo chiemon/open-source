@@ -2,8 +2,10 @@ apt-get install  libboost-all-dev liblmdb-dev libatlas-base-dev libhdf5-serial-d
 
 for req in $(cat requirements.txt) pydot; do pip install $req; done
 
-cmake -DBUILD_python=ON \
+cmake -DCMAKE_CXX_FLAGS=-std=c++11 \
+    -DBUILD_python=ON \
     -DBUILD_docs=OFF \
+    -Dpython_version=3 \
     -DPYTHON_LIBRARIES=/anaconda3/envs/caffe-1.0/lib \
     -DPYTHON_INCLUDE_DIR=/anaconda3/envs/caffe-1.0/include/python3.8 \
     -DPYTHON_EXECUTABLE=/anaconda3/envs/caffe-1.0/bin/python ..
